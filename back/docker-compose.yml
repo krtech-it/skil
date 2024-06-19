@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  arm_gpr:
+      build: .
+      env_file:
+        - .env_example
+      restart: always
+      ports:
+        - "7070:4000"
+      volumes:
+        - ./logs:/usr/src/app/logs
+      command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 4000"]
+
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "education"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres_education"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:

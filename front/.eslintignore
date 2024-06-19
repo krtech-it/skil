@@ -1,0 +1,5 @@
+/front/src/vendor/*
+/front/configs
+/babel.config.js
+/lint-staged.config.js
+/server

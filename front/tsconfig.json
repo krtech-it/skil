@@ -1,0 +1,35 @@
+{
+  "extends": "@quark-uilib/dotfiles/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "typeRoots": [
+      "../node_modules/@types",
+      "./src/types"
+    ],
+    "target": "ESNext",
+    "paths": {
+      "src": ["./src"],
+      "src/*": ["./src/*"]
+    },
+    "lib": [
+      "es2021",
+      "dom"
+    ],
+    "suppressImplicitAnyIndexErrors": false
+  },
+  "exclude": [
+    "../node_modules",
+    ".npm",
+    "build",
+    "nginx",
+    "public",
+    "scripts",
+    "jest"
+  ],
+  "include": [
+    "types",
+    "front/src",
+    "./src/**/*",
+    "front/vite.config.ts"
+  ]
+}

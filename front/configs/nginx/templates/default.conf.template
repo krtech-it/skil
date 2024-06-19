@@ -1,0 +1,35 @@
+server {
+    listen       80;
+    server_name  localhost;
+    client_max_body_size 100M;
+
+    root /usr/share/nginx/html;
+
+    error_page 404 =200 /index.html;
+
+    error_page 500 502 503 504  /50x.html;
+
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location / {
+        try_files $uri $uri/index.html $uri.html /index.html /index.htm;
+    }
+
+    location ~* \.(jpg|jpeg|png|ttf|webm|ico)$ {
+        expires 1M;
+        add_header Cache-Control public;
+    }
+
+    location /api/ {
+        resolver 127.0.0.11;
+        proxy_pass ${API};
+
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Headers' 'Authorization,Accept,Origin,Keep-Alive,User-Agent,Cache-Control,Content-Type';
+        add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+    }
+
+}

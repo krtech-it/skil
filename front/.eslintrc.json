@@ -1,0 +1,32 @@
+{
+  "extends": "./node_modules/@quark-uilib/dotfiles/eslint-config",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      },
+      "alias": {
+        "map": [["src", "./src"]],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "rules": {
+    "promise/catch-or-return": "off",
+    "promise/prefer-await-to-then": "off",
+    "no-nested-ternary": "warn",
+    "@typescript-eslint/no-empty-interface": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    "no-shadow": "off",
+    "max-classes-per-file": "warn",
+    "import/order": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "warn",
+    "no-return-await": "warn",
+    "@typescript-eslint/no-unnecessary-type-assertion": "warn",
+    "@typescript-eslint/no-misused-promises": "off",
+    "import/no-unresolved": [
+      "error",
+      { "ignore": ["\\.svg\\?react$", "\\.svg\\?url$"] }
+    ]
+  }
+}

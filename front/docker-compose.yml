@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  frontend:
+    image:  hubgitlab.rosatom.local/ml/ocr/atom_oko/front:dev
+    container_name: ocr-front
+    restart: always
+    ports:
+      - 4005:80
+    env_file:
+      - .env
+    environment:
+      TZ: "Europe/Moscow"
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
